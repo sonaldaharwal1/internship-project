@@ -14,7 +14,7 @@ class Login(Page):
 
      # i remove my username and password, please put username and password for reviewing the code
      def login(self):
-         self.input_text('sonalshivhare22@gmail.com', *self.EMAIL_FEILD)
-         self.input_text('Prishapahal0715', *self.PWD_FIELD)
+         self.input_text('username', *self.EMAIL_FEILD)
+         self.input_text('Password', *self.PWD_FIELD)
          self.wait_and_click(*self.CONTINUE_BTN)
 
