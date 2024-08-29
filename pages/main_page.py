@@ -8,5 +8,5 @@ class MainPage(Page):
 
 
     def click_connect_the_company(self):
-        self.click(*self.CONNECT_THE_COMPANY_BTN )
+        self.wait_and_click(*self.CONNECT_THE_COMPANY_BTN )
 

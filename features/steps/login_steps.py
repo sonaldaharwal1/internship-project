@@ -15,3 +15,5 @@ def click_login(context):
 
   context.app.login_page.login()
 
+  sleep(5)
+

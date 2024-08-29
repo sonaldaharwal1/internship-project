@@ -5,6 +5,7 @@ from time import sleep
 class Page:
     def __init__(self, driver):
         self.driver = driver
+        self.wait = WebDriverWait(driver, timeout=15)
 
     def open_url(self, url):
         self.driver.get(url)
@@ -27,7 +28,7 @@ class Page:
         return window
 
     def switch_to_new_window(self):
-        # self.wait.until(EC.new_window_is_opened)
+        self.wait.until(EC.new_window_is_opened)
         windows = self.driver.window_handles
         print(f'All windows {windows}')
         self.driver.switch_to.window(windows[1])
