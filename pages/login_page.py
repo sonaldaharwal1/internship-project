@@ -17,4 +17,3 @@ class Login(Page):
          self.input_text('username', *self.EMAIL_FEILD)
          self.input_text('Password', *self.PWD_FIELD)
          self.wait_and_click(*self.CONTINUE_BTN)
-
