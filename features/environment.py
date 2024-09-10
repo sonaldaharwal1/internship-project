@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
@@ -15,9 +16,18 @@ def browser_init(context, scenario_name):
     :param context: Behave context
     """
     # driver_path = ChromeDriverManager().install()
-    driver_path = './chromedriver.exe'
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+    # driver_path = './chromedriver.exe'
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service)
+
+    # chrome_options = Options()
+    # mobile_emulation = {"deviceName": "Nexus 5"}
+    # chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    #
+    # driver_path = ChromeDriverManager().install()
+    # driver_path = './chromedriver.exe'
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # driver_path = GeckoDriverManager().install()
     # service = Service(driver_path)
@@ -50,8 +60,23 @@ def browser_init(context, scenario_name):
     # options.set_capability('bstack:options', bstack_options)
     # context.driver = webdriver.Remote(command_executor=url, options=options)
 
+    bs_user = 'sonalshivhare_mnd1kM'
+    bs_key = 'zaDwBCVHXVyGV9c5Tpp1'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
-    context.driver.maximize_window()
+    options = Options()
+    bstack_options = {
+
+        "deviceName":"OnePlus 11R",
+        "osVersion": "13",
+        "browserName": "chrome",
+        "sessionName": scenario_name
+    }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
+
+
+    # context.driver.maximize_window()
     context.driver.implicitly_wait(4)
     context.driver.wait = WebDriverWait(context.driver, 10)
 
@@ -59,7 +84,7 @@ def browser_init(context, scenario_name):
 
 
 def before_scenario(context, scenario):
-    print('\nStarted scenario: ', scenario.name)
+    print('\nStarted scenario: ',scenario.name)
     #browser_init(context)
     browser_init(context, scenario.name)
 

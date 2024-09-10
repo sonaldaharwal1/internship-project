@@ -2,6 +2,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
+
 class Page:
     def __init__(self, driver):
         self.driver = driver
@@ -34,14 +35,12 @@ class Page:
         self.driver.switch_to.window(windows[1])
         print(f'Switched to window => {windows[1]}')
 
-
     def switch_to_window_by_id(self, window_id):
         self.driver.switch_to.window(window_id)
         print(f'Switched to window => {window_id}')
 
     def close(self):
         self.driver.close()
-
 
     def wait_until_clickable(self, *locator):
         self.wait.until(
